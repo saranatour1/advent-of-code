@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es2016",                                 
+    "lib": ["ESNext"],                                     
+    "module": "commonjs",                                
+    "rootDir": "src",                                   
+    "resolveJsonModule": true,                          
+    "allowJs": true,                                     
+    "outDir": "build",                                   
+    "esModuleInterop": true,                             
+    "forceConsistentCasingInFileNames": true,           
+    "strict": true,                                    
+    "noImplicitAny": true,                              
+    "skipLibCheck": true                                
+  },
+  "files": [
+    "--esModuleInterop",
+    "--module",
+    "commonjs"
+  ]
+}
