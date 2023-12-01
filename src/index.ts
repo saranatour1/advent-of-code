@@ -66,9 +66,9 @@ let sum =0;
 }
 
 function mapEachLine(str: string) {
-  const numberWordsPattern: string = degits.map(digit => `${digit}`).join("|");
+  const numberWordsPattern: string = degits.map(digit => `${digit.split('').reverse().join('')}`).join("|");
   const pattern: RegExp = new RegExp(`\\d|${numberWordsPattern}`, "g");
-  const matches: string[] = str.match(pattern) || [];
+  const matches: string[] = str.split('').reverse().join('').match(pattern) || [];
   const occurances = [matches[0], matches[matches.length - 1]];
   let left = 0;
   let right = 0;
@@ -85,29 +85,29 @@ function mapEachLine(str: string) {
     right = convertDigit(occurances[1]) as number;
   }
 
-  // find right and left digits at either side
-  const calibrationValue = left * 10 + right;
+  const calibrationValue = right * 10 + left;
   return { calibrationValue: calibrationValue };
 }
 
 function convertDigit(digit: string) {
-  if (digit === "one") {
+
+  if (digit === "eno") {
     return 1;
-  } else if (digit === "two") {
+  } else if (digit === "owt") {
     return 2;
-  } else if (digit === "three") {
+  } else if (digit === "eerht") {
     return 3;
-  } else if (digit === "four") {
+  } else if (digit === "ruof") {
     return 4;
-  } else if (digit === "five") {
+  } else if (digit === "evif") {
     return 5;
-  } else if (digit === "six") {
+  } else if (digit === "xis") {
     return 6;
-  } else if (digit === "seven") {
+  } else if (digit === "neves") {
     return 7;
-  } else if (digit === "eight") {
+  } else if (digit === "thgie") { 
     return 8;
-  } else if (digit === "nine") {
+  } else if (digit === "enin") {
     return 9;
   }
 }
