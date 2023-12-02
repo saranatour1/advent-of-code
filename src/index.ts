@@ -37,7 +37,7 @@ function part1() {
     });
     const arr: string[] = [];
     for await (const line of rl) {
-      arr.push(line); 
+      arr.push(line);
     }
 
     return getStrings(arr);
@@ -46,6 +46,7 @@ function part1() {
   // get  the Id, get the blue only 12 red cubes, 13 green cubes, and 14 blue cubes
   function getStrings(arr: string[]) {
     let ids: Set<number> = new Set();
+    let allOcurances: { red: number; green: number; blue: number }[][] = [];
     // let occuarnace
     arr.forEach((line, index) => {
       const [, removeFirst] = line.split(":");
@@ -57,7 +58,7 @@ function part1() {
         let green = 0;
         line.split(",").forEach((color) => {
           let number = color.match(/\d+/);
-          
+
           if (number) {
             const ocurranceNumber = Number(number[0]);
             if (color.includes("red")) {
@@ -71,17 +72,31 @@ function part1() {
         });
         occuarnace.push({ red: red, green: green, blue: blue });
       });
-      
-      if (occuarnace.every(item => item.blue <= blueNum && item.green <= greenNum && item.red <= redNum)) {
-        ids.add(index + 1); 
+
+      if (occuarnace.every((item) => item.blue <= blueNum && item.green <= greenNum && item.red <= redNum)) {
+        ids.add(index + 1);
       }
+
+      allOcurances.push(occuarnace);
     });
-    
-    return part2(ids);
+
+    return part2(ids, allOcurances);
   }
 
-  function part2(ids:Set<number>){
-    console.log(ids)
+  function part2(ids: Set<number>, occuarnace: { red: number; green: number; blue: number }[][]) {
+    let sum =0;
+    occuarnace.forEach((item ,index) => {
+      const values = {red:0, green:0, blue:0}
+      
+      item.forEach((item ,idx) => {
+        values.red = Math.max(values.red, item.red);
+        values.blue =Math.max(values.blue, item.blue)
+        values.green =Math.max(values.green, item.green)
+      });
+      
+      sum+= (values.blue * values.green * values.red)
+    });
+    console.log(sum )
   }
 
   // 3153
