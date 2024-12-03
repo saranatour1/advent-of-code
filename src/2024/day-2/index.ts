@@ -4,6 +4,7 @@ export const day2 = () => {
   let numbers: number[][] = [];
   let safeCounter = 0;
   let unsafeCounter = 0;
+  let someHowSafe = 0;
 
   for (const numberLines of data) {
     let line = numberLines.match(/\d+/g);
@@ -12,17 +13,23 @@ export const day2 = () => {
   }
   // checking here
   for (const level of numbers) {
-    let valid = false;
-    let steps: number[] = [];
-    for (let i = 1; i < level.length; i++) {
-      steps.push(level[i] - level[i - 1]);
-    }
-    const increasing = steps.every((n) => n > 0 && n <= 3);
-    const decreasing = steps.every((n) => n < 0 && n >= -3);
-    valid = increasing || decreasing;
-    if (valid) {
+    if (isSafe(level)) {
       safeCounter++;
     }
   }
+
   console.log("Part1:", safeCounter);
+  console.log("Part2:",someHowSafe)
 };
+
+
+const isSafe = (level:number[])=>{
+  let steps: number[] = [];
+  for (let i = 1; i < level.length; i++) {
+    steps.push(level[i] - level[i - 1]);
+  }
+
+  const increasing = steps.every((n) => n > 0 && n <= 3);
+  const decreasing = steps.every((n) => n < 0 && n >= -3);
+  return increasing || decreasing;
+}
