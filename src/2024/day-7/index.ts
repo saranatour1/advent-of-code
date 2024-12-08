@@ -17,7 +17,7 @@ export const day7=()=>{
     }
   } 
 
-
+  
   console.log("Part 2",total)
 }
 
