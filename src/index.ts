@@ -1,3 +1,3 @@
-import { day14 } from "./2024/day-14";
+import { day17 } from "./2024/day-17";
 
-day14()
+day17()
