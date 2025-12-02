@@ -6,8 +6,8 @@ export const day_2 = () => {
   const result = part1();
   console.log("Part 1: Invalid Id's", result)
 
-  // const result2 = part2();
-  // console.log("Part 2: The password =", result2)
+  const result2 = part2();
+  console.log("Part 2:  Invalid Id's now are", result2)
 
 }
 
@@ -18,55 +18,60 @@ const part1 = () => {
   // const lines = file.split('\n')
 
   // example lines 
-  const lines = file.split(',').map(a=> {
+  const lines = file.split(',').map(a => {
     const [left, right] = a.split('-');
     return [Number(left), Number(right)]
   })
 
 
-  const invalidIds = new Map<string,number>([]);
-  for(const [min,max] of lines){
+  const invalidIds = new Map<string, number>([]);
+  for (const [min, max] of lines) {
     // here we have a min to max range, we save ranges in a map, whenever there's an duplicate number, we add 1, if range has odd char length we do nothing
 
     // we loop from the min to max
-    for(let i =min; i<=max; i++){
-      const firstHalf = i.toString().substring(0, Math.floor(i.toString().length/2))
-      const secondHalf = i.toString().substring(Math.floor(i.toString().length/2), Math.floor(i.toString().length))
+    for (let i = min; i <= max; i++) {
+      const firstHalf = i.toString().substring(0, Math.floor(i.toString().length / 2))
+      const secondHalf = i.toString().substring(Math.floor(i.toString().length / 2), Math.floor(i.toString().length))
 
       // is i in invalidIds
-      if(firstHalf === secondHalf){
+      if (firstHalf === secondHalf) {
         // const value = invalidIds.get(firstHalf);
         invalidIds.set(`${firstHalf}${secondHalf}`, 1)
       }
     }
   }
 
-  return Array.from(invalidIds.keys()).reduce((prev, curr, index)=> prev + Number(curr), 0)
+  return Array.from(invalidIds.keys()).reduce((prev, curr, index) => prev + Number(curr), 0)
 }
 
 
-// const part2 = () => {
-//   const file = readFileSync('./src/2025/day-1/input.txt', 'utf-8')
-//   // const lines = file.split('\n')
+const part2 = () => {
+  const file = readFileSync('./src/2025/day-2/input.txt', 'utf-8')
+  // const lines = file.split('\n')
 
-//   // example lines 
-//   const lines = example.split('\n')
-//   const passwordMethod = 0x434C49434B
+  // example lines 
+  const lines = file.split(',').map(a => {
+    const [left, right] = a.split('-');
+    return [Number(left), Number(right)]
+  })
+  const invalidIds = new Array<number>();
 
-//   let password = 0;
-//   let currentRotation = 50;
-//   let moreZeros = 0
+  for (const [min, max] of lines) {
+    for (let i = min; i <= max; i++) {
+      if (isInvalid(i)) {
+        invalidIds.push(i)
+      }
+    }
+  }
+  return invalidIds.reduce((prev, curr) => prev + Number(curr), 0)
+}
 
-//   for (const line of lines) {
-//     const [, dir, amount] = line.match(/^([LR])(\d+)$/)!;
-//     if (dir === "L") {
-//       currentRotation = (currentRotation - Number(amount)) % 100
-//        moreZeros = (currentRotation + Number(amount))//100
-//     } else { // "R"
-//       currentRotation = (currentRotation + Number(amount)) % 100
-//     }
-//     if (currentRotation === 0) password += 1
-//   }
+const isInvalid = (str: string | number) => {
+  const invalidIdRegex = /\b(\d+)\1+\b/
+  if (typeof str === "number") {
+    const id = str.toString();
 
-//   return password
-// }
+    return invalidIdRegex.test(id);
+  }
+  return invalidIdRegex.test(str);
+}
