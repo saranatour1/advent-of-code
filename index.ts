@@ -5,6 +5,8 @@ import { day_4 } from "./src/2025/day-4/index";
 import { day_5 } from "./src/2025/day-5/index";
 import { day_6 } from "./src/2025/day-6/index";
 import { day_7 } from './src/2025/day-7/index';
+import { day_8 } from './src/2025/day-8/index';
+import { day_11 } from './src/2025/day-11/index';
 
 export const CURRENT_YEAR = 2025;
 
@@ -16,7 +18,9 @@ export const runFn = () => {
     // day_4()
     // day_5()
     // day_6();
-    day_7()
+    // day_7()
+    // day_8();
+    day_11();
   }
 };
 
