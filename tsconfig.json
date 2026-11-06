@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "target": "ES2020",                                 
-    "lib": ["ESNext","dom.iterable"],                                    
+    "lib": ["ESNext","dom.iterable"],
+    "types": ["node"],                                    
     "module": "CommonJS",                                
     "rootDir": "src",                                   
     "resolveJsonModule": true,                          
