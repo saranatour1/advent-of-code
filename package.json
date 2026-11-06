@@ -4,14 +4,14 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --watch src --exec \"tsx ./index.ts\""
+    "day": "tsx watch run.ts",
+    "dev": "tsx watch ./index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^26.6.6",
-    "nodemon": "^3.1.14",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
   },
